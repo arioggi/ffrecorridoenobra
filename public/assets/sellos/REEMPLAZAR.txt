@@ -1,0 +1,7 @@
+REEMPLAZAR CON:
+- garantia-7-dias.png      → Sello dorado "Garantía 7 días"
+- alumnos-satisfechos.png  → Sello dorado "+4,605 Alumnos"
+- acceso-inmediato.png     → Sello dorado "Acceso Inmediato"
+
+Formato: PNG con fondo transparente
+Tamaño recomendado: 300x300px mínimo

@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+/* ===== RESET CRÍTICO — sobrescribe defaults de Vite ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  text-align: left;
+  display: block;
+}
+
+/* ===== TEMA TAILWIND v4 ===== */
+@theme {
+  --color-orange-primary: #FF6B1A;
+  --color-orange-light: #FF8A4A;
+  --color-orange-dark: #E55A0A;
+  --color-black-primary: #0A0A0A;
+  --color-black-secondary: #1A1A1A;
+  --color-black-elevated: #242424;
+
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-instrument: "Instrument Serif", serif;
+}
+
+/* ===== FUENTES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+
+/* ===== UTILIDADES PERSONALIZADAS ===== */
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.font-instrument {
+  font-family: 'Instrument Serif', serif;
+}
+
+/* ===== GRAIN NOISE OVERLAY ===== */
+.grain-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== ANIMACIONES AGRESIVAS ===== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 107, 26, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 107, 26, 0.8);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes zoom-breath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.animate-zoom-breath {
+  animation: zoom-breath 3s ease-in-out infinite;
+}
+
+/* ===== SCROLLBAR DARK ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF6B1A;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E55A0A;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+  [style*="blur(80px)"],
+  [style*="blur(100px)"] { filter: blur(20px) !important; }
+  [aria-hidden="true"][style*="radial-gradient"] { opacity: 0.6; }
+}
+.cta-button-wrapper, .font-bebas {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+.cta-pulse { will-change: box-shadow, transform; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+@media (max-width: 768px) { .grain-noise::before { display: none; } }
+html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }

@@ -1,0 +1,4 @@
+REEMPLAZAR CON:
+- oscar-cortes.jpg    → Foto Oscar Cortés (cuadrada, 400x400px mínimo)
+- ana-pau-siles.jpg   → Foto Ana Pau Siles (cuadrada, 400x400px mínimo)
+- mauricio-salazar.jpg → Foto Mauricio Salazar (cuadrada, 400x400px mínimo)

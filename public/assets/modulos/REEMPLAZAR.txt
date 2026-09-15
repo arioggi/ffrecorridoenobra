@@ -1,0 +1,5 @@
+REEMPLAZAR CON: modulo-1.jpg hasta modulo-12.jpg
+(12 imágenes en total, una por módulo)
+Formato: JPG o WebP
+Tamaño recomendado: 800x450px (relación 16:9)
+Fuente: screenshots del LMS de Katya / capturas con silueta naranja

@@ -1,0 +1,3 @@
+REEMPLAZAR CON: academia-orange-logo.png
+Formato: PNG con fondo transparente
+Tamaño mínimo: 500px de ancho
