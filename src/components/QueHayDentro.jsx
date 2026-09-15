@@ -211,7 +211,7 @@ export default function QueHayDentro() {
         {/* CTA */}
         <CTAButton from="que-hay-dentro" className="mt-8" />
 
-        {/* Texto de garantía */}
+        {/* Disponibilidad y cobertura */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -228,14 +228,6 @@ export default function QueHayDentro() {
             <strong className="text-[#FF6B1A]">
               Curso en línea inmediato · Presencial 13 y 14 de noviembre
             </strong>
-          </p>
-          <p className="text-[#B8B8B8] text-sm md:text-base mt-2">
-            Está respaldado por nuestra{' '}
-            <strong className="text-white">Garantía FÓRMULA FLIPPING™</strong>
-          </p>
-          <p className="text-[#B8B8B8] text-sm md:text-base italic max-w-2xl">
-            Si no estás completamente satisfecho dentro de los primeros 7 días envíanos un
-            mensaje y te devolvemos cada centavo. Y te quedas con todo el contenido.
           </p>
         </motion.div>
       </div>

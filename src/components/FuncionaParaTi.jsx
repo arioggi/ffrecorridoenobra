@@ -130,7 +130,7 @@ export default function FuncionaParaTi() {
         {/* CTA */}
         <CTAButton from="funciona-para-ti" />
 
-        {/* Sublabels + texto de garantía */}
+        {/* Sublabels debajo del CTA */}
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="text-[#B8B8B8] text-sm md:text-base">
             <p>
@@ -143,13 +143,6 @@ export default function FuncionaParaTi() {
               </strong>
             </p>
           </div>
-
-          <p className="text-[#B8B8B8] text-sm md:text-base max-w-2xl italic">
-            Está respaldado por nuestra{' '}
-            <strong className="text-white">Garantía FÓRMULA FLIPPING™</strong>. Si no estás
-            completamente satisfecho, dentro de los 7 días envíanos un mensaje y te
-            devolvemos cada centavo. Y te quedas con todo el contenido.
-          </p>
         </div>
       </div>
     </section>
