@@ -183,7 +183,7 @@ export default function PasoPago() {
                   className="block mt-2 font-normal opacity-95"
                   style={{ fontSize: 'clamp(0.85rem, 2vw, 1.1rem)' }}
                 >
-                  Pago seguro con Stripe · Débito o crédito
+                  Pago 100% seguro · Débito o crédito
                 </span>
               </motion.a>
             </motion.div>

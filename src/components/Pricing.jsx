@@ -146,7 +146,7 @@ export default function Pricing() {
 
             {/* Trust */}
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[#707070] text-sm">
-              <span>🔒 Pago 100% seguro con Stripe</span>
+              <span>🔒 Pago 100% seguro con tarjeta</span>
               <span>🏦 O paga por transferencia bancaria</span>
               <span>💳 Acepta todas las tarjetas</span>
               <span>🛡️ Garantía {CONFIG.DIAS_GARANTIA} días o devolvemos tu dinero</span>
