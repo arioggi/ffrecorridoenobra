@@ -59,3 +59,13 @@ export const precioActual = () => (esPreventaActiva() ? CONFIG.PRECIO_PREVENTA :
 /** formatoMXN(3990) → "$3,990.00" — siempre con dos decimales, es el formato que usa el cliente. */
 export const formatoMXN = (n) =>
   `$${n.toLocaleString('es-MX', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+/**
+ * Rutas que resuelve el router del cliente (App.jsx) y que NO existen como
+ * archivo en disco. El script scripts/prerender-routes.mjs genera un
+ * index.html para cada una después del build, para que funcionen con recarga
+ * directa aunque el host no tenga configurado el rewrite /* → /index.html.
+ */
+export const LEGAL_PAGES = ['privacidad', 'terminos', 'cookies', 'contacto'];
+
+export const RUTAS_SPA = [...LEGAL_PAGES, CONFIG.RUTA_PAGO.replace(/^\//, '')];

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { LEGAL_PAGES } from './config/constants';
 import { initScrollTracking } from './lib/tracking';
 
 import Hero from './components/Hero';
@@ -20,8 +21,6 @@ import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
 import LegalPage from './components/LegalPage';
 import PasoPago from './components/PasoPago';
-
-const LEGAL_PAGES = ['privacidad', 'terminos', 'cookies', 'contacto'];
 
 function getPath() {
   return window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
