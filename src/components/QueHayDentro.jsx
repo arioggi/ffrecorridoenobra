@@ -1,13 +1,6 @@
 import { motion } from 'framer-motion';
 import CTAButton from './CTAButton';
 
-const beneficios = [
-  'Cómo encontrar propiedades con potencial de flipping en cualquier ciudad de México (sin tener experiencia previa)',
-  'Cómo levantar capital de inversionistas privados para arrancar tus operaciones SIN usar tu propio dinero',
-  'Cómo negociar precios por debajo del valor de mercado usando técnicas probadas en +1,000 operaciones',
-  'Cómo remodelar estratégicamente para maximizar la utilidad por operación entre $30,000 y $80,000 USD',
-];
-
 const modulos = [
   {
     numero: '01',
@@ -88,7 +81,7 @@ export default function QueHayDentro() {
           className="inline-block px-10 md:px-14 py-4 md:py-5 rounded-full border-2 border-[#FF6B1A] bg-[#FF6B1A]/10"
         >
           <span className="font-bebas text-[#FF6B1A] tracking-[0.25em] text-lg md:text-2xl">
-            EL PROGRAMA COMPLETO
+            LA NUEVA EDICIÓN
           </span>
         </motion.div>
 
@@ -102,31 +95,53 @@ export default function QueHayDentro() {
           style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
         >
           ¿QUÉ HAY DENTRO DE{' '}
-          <span className="text-[#FF6B1A]">FÓRMULA FLIPPING</span>?
+          <span className="text-[#FF6B1A]">FÓRMULA FLIPPING RECORRIDO EN OBRA</span>?
         </motion.h2>
 
-        {/* Lista de beneficios bullets */}
+        {/* Descripción de la nueva edición */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-3xl flex flex-col gap-4"
+          className="w-full max-w-3xl flex flex-col gap-6 text-center"
         >
-          {beneficios.map((b, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="flex items-start gap-3 text-[#B8B8B8] leading-relaxed text-left"
-              style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)' }}
-            >
-              <span className="text-[#FF6B1A] text-2xl leading-none mt-1">•</span>
-              <span>{b}</span>
-            </motion.div>
-          ))}
+          <p
+            className="text-[#B8B8B8] leading-relaxed"
+            style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)' }}
+          >
+            Llegó la nueva versión de{' '}
+            <strong className="text-white">FÓRMULA FLIPPING – RECORRIDO EN OBRA</strong>, una
+            experiencia que combina lo mejor de los dos mundos:
+          </p>
+
+          <p
+            className="font-bebas text-white leading-tight"
+            style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.2rem)' }}
+          >
+            Clases presenciales + Curso completo en línea + Recorrido en una obra real +
+            Grupo de soporte.
+          </p>
+
+          <p
+            className="text-[#B8B8B8] leading-relaxed"
+            style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)' }}
+          >
+            No solo te voy a explicar cómo analizar, comprar, remodelar y vender una propiedad.{' '}
+            <strong className="text-white">
+              Vamos a entrar a la obra para que puedas ver cómo se toman esas decisiones en un
+              proyecto real.
+            </strong>
+          </p>
+
+          <p
+            className="text-[#B8B8B8] leading-relaxed"
+            style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)' }}
+          >
+            Porque el flipping inmobiliario no solo se aprende en un salón de clases, se aprende
+            en la obra. Ahora tienes lo mejor de los 2 mundos: clases presenciales, en línea y
+            recorrido en obra.
+          </p>
         </motion.div>
 
         {/* Sub-título "ESTO ES LO QUE ENCONTRARÁS DENTRO" */}
@@ -194,7 +209,7 @@ export default function QueHayDentro() {
         </div>
 
         {/* CTA */}
-        <CTAButton className="mt-8" />
+        <CTAButton from="que-hay-dentro" className="mt-8" />
 
         {/* Texto de garantía */}
         <motion.div
@@ -209,7 +224,10 @@ export default function QueHayDentro() {
             <strong className="text-white">cualquier ciudad de México y LATAM</strong>
           </p>
           <p className="text-[#B8B8B8] text-sm md:text-base">
-            Disponibilidad: <strong className="text-[#FF6B1A]">Inmediata</strong>
+            Disponibilidad:{' '}
+            <strong className="text-[#FF6B1A]">
+              Curso en línea inmediato · Presencial 13 y 14 de noviembre
+            </strong>
           </p>
           <p className="text-[#B8B8B8] text-sm md:text-base mt-2">
             Está respaldado por nuestra{' '}

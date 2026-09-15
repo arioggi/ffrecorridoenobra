@@ -1,18 +1,13 @@
 import { motion } from 'framer-motion';
-import { CONFIG } from '../config/constants';
+import { CONFIG, esPreventaActiva, formatoMXN } from '../config/constants';
 import CTAButton from './CTAButton';
 
-const VALUE_STACK = [
-  { label: 'Acceso al curso completo (12 módulos)', value: 497 },
-  { label: 'Acceso por 1 año completo', value: 200 },
-  { label: 'Comunidad WhatsApp activa', value: 97 },
-  { label: 'Estudios de casos prácticos reales', value: 150 },
-  { label: 'Estructura fiscal para flipping', value: 97 },
-  { label: 'Garantía de 7 días', value: null },
-];
-const TOTAL_VALUE = VALUE_STACK.reduce((s, i) => s + (i.value || 0), 0);
+const VALUE_STACK = CONFIG.VALUE_STACK;
+const TOTAL_VALUE = VALUE_STACK.reduce((s, i) => s + i.value, 0);
 
 export default function Pricing() {
+  const preventa = esPreventaActiva();
+
   return (
     <section
       className="w-full py-20 md:py-32 px-4 md:px-8 bg-[#1A1A1A]"
@@ -24,7 +19,9 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
           <span className="inline-block font-bebas text-[#FF6B1A] tracking-[0.3em] text-lg md:text-2xl bg-[#FF6B1A]/10 border-2 border-[#FF6B1A] px-10 md:px-14 py-4 md:py-5 rounded-full mb-6">
-            OFERTA ESPECIAL DE HOY
+            {preventa
+              ? `PREVENTA HASTA EL ${CONFIG.PREVENTA_FIN_TEXTO.toUpperCase()}`
+              : 'PRECIO ESPECIAL'}
           </span>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -34,8 +31,8 @@ export default function Pricing() {
             className="font-bebas text-white leading-none mb-6"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 5.5rem)' }}
           >
-            LO QUE OBTIENES{' '}
-            <span className="text-[#FF6B1A]">HOY</span>
+            LO QUE OBTIENES CON LA{' '}
+            <span className="text-[#FF6B1A]">EDICIÓN LIMITADA</span>
           </motion.h2>
           <div
             className="w-20 h-1 rounded-full mx-auto"
@@ -85,7 +82,7 @@ export default function Pricing() {
                   <span className="text-[#B8B8B8] text-sm md:text-base">{item.label}</span>
                 </div>
                 <span className="text-[#FF6B1A] font-bold text-sm md:text-base whitespace-nowrap flex-shrink-0">
-                  {item.value ? `$${item.value} USD` : 'Sin costo'}
+                  {formatoMXN(item.value)} {CONFIG.MONEDA}
                 </span>
               </motion.div>
             ))}
@@ -95,7 +92,7 @@ export default function Pricing() {
             >
               <span className="font-bebas text-white text-xl">VALOR TOTAL:</span>
               <span className="font-bebas text-[#B8B8B8] text-2xl line-through">
-                ${TOTAL_VALUE.toLocaleString()} USD
+                {formatoMXN(TOTAL_VALUE)} {CONFIG.MONEDA}
               </span>
             </div>
           </motion.div>
@@ -115,11 +112,19 @@ export default function Pricing() {
               boxShadow: '0 0 60px rgba(255,107,26,0.12)',
             }}
           >
-            <p className="text-[#707070] text-lg mb-2">
-              Precio normal:{' '}
-              <span className="line-through">${CONFIG.PRECIO_NORMAL} USD</span>
+            {preventa && (
+              <p className="text-[#707070] text-lg mb-2">
+                Precio especial:{' '}
+                <span className="line-through">
+                  {formatoMXN(CONFIG.PRECIO_NORMAL)} {CONFIG.MONEDA}
+                </span>
+              </p>
+            )}
+            <p className="text-[#B8B8B8] text-sm font-bold uppercase tracking-widest mb-2">
+              {preventa
+                ? `PREVENTA HASTA EL ${CONFIG.PREVENTA_FIN_TEXTO.toUpperCase()}:`
+                : 'PRECIO ESPECIAL:'}
             </p>
-            <p className="text-[#B8B8B8] text-sm font-bold uppercase tracking-widest mb-2">HOY SOLO:</p>
             <motion.span
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -132,16 +137,17 @@ export default function Pricing() {
                 backgroundClip: 'text',
               }}
             >
-              ${CONFIG.PRECIO_ACTUAL}
+              {formatoMXN(preventa ? CONFIG.PRECIO_PREVENTA : CONFIG.PRECIO_NORMAL)}
             </motion.span>
-            <p className="text-[#B8B8B8] text-base mb-8">Pago único en USD</p>
+            <p className="text-[#B8B8B8] text-base mb-8">{CONFIG.MONEDA} · Pago único</p>
 
             {/* CTA */}
-            <CTAButton />
+            <CTAButton from="pricing" />
 
             {/* Trust */}
             <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[#707070] text-sm">
-              <span>🔒 Pago 100% seguro vía Hotmart</span>
+              <span>🔒 Pago 100% seguro con Stripe</span>
+              <span>🏦 O paga por transferencia bancaria</span>
               <span>💳 Acepta todas las tarjetas</span>
               <span>🛡️ Garantía {CONFIG.DIAS_GARANTIA} días o devolvemos tu dinero</span>
             </div>

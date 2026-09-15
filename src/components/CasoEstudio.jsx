@@ -147,7 +147,7 @@ export default function CasoEstudio() {
 
         {/* CTA al final de sección */}
         <div className="w-full mt-10 md:mt-12">
-          <CTAButton />
+          <CTAButton from="caso-estudio" />
         </div>
       </div>
     </section>

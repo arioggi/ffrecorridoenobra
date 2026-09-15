@@ -66,32 +66,8 @@ export default function FinalCTA() {
         </motion.p>
 
         {/* CTA */}
-        <CTAButton className="mb-8" />
+        <CTAButton from="final-cta" className="mb-8" />
 
-        {/* Sellos de confianza — mismo tamaño y estructura que Guarantees */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14"
-        >
-          {[
-            { src: '/assets/sellos/7_dias.png', alt: 'Garantía 7 días' },
-            { src: '/assets/sellos/alumnos_satisfechos.png', alt: '+4,605 alumnos satisfechos' },
-            { src: '/assets/sellos/acceso_inmediato.png', alt: 'Acceso 100% inmediato' },
-          ].map((sello) => (
-            <div key={sello.alt} className="flex flex-col items-center gap-4">
-              <img
-                src={sello.src}
-                alt={sello.alt}
-                className="w-44 h-44 md:w-52 md:h-52 object-contain drop-shadow-2xl"
-                style={{ filter: 'drop-shadow(0 0 30px rgba(255,107,26,0.25))' }}
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

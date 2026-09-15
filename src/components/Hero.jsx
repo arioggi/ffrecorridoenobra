@@ -1,17 +1,19 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CONFIG } from '../config/constants';
+import { trackEvent, trackCustom } from '../lib/tracking';
 
 const fadeInUp = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } };
 
-export default function Hero({ onUnlock, isUnlocked }) {
+export default function Hero() {
   const playerContainerRef = useRef(null);
   const playerRef = useRef(null);
   const hasInitializedRef = useRef(false);
+  const hasTrackedCompletionRef = useRef(false);
 
   useEffect(() => {
     // Solo inicializamos UNA VEZ. Si ya está inicializado, no hacemos nada.
-    // Esto evita conflictos cuando isUnlocked cambia.
+    // Esto evita conflictos con los re-renders de React.
     if (hasInitializedRef.current) return;
 
     const existing = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
@@ -31,9 +33,12 @@ export default function Hero({ onUnlock, isUnlocked }) {
         playerVars: { rel: 0, modestbranding: 1, showinfo: 0, autoplay: 0 },
         events: {
           onStateChange: (event) => {
-            // event.data === 0 significa ENDED
-            if (event.data === 0) {
-              onUnlock();
+            // event.data === 0 significa ENDED. La landing es abierta, así que
+            // esto solo registra que vieron la VSL completa — una vez por sesión.
+            if (event.data === 0 && !hasTrackedCompletionRef.current) {
+              hasTrackedCompletionRef.current = true;
+              trackEvent('VSLCompleted');
+              trackCustom('VSLCompleted');
             }
           },
         },
@@ -51,7 +56,7 @@ export default function Hero({ onUnlock, isUnlocked }) {
     // está re-renderizando, causa el error "removeChild" porque el DOM ya
     // no coincide con lo que React espera.
     // El player se mantiene vivo durante toda la sesión.
-  }, [onUnlock]);
+  }, []);
 
   return (
     <section className="w-full min-h-screen flex flex-col items-center justify-start pt-8 pb-20 px-4 md:px-8 bg-[#0A0A0A] relative overflow-hidden">
@@ -94,13 +99,17 @@ export default function Hero({ onUnlock, isUnlocked }) {
             className="font-bebas text-white leading-none"
             style={{ fontSize: 'clamp(2.8rem, 9vw, 7rem)' }}
           >
-            MIRA EL VIDEO COMPLETO
+            EDICIÓN LIMITADA:
             <br />
-            PARA{' '}
+            FÓRMULA FLIPPING +{' '}
             <span className="text-[#FF6B1A]" style={{ textShadow: '0 0 40px rgba(255,107,26,0.5)' }}>
-              DESBLOQUEAR
+              RECORRIDO EN OBRA
             </span>
           </motion.h1>
+
+          <p className="mt-5 text-[#B8B8B8] uppercase tracking-widest text-sm md:text-base">
+            Curso presencial 13 nov · Recorrido en obra 14 nov · Curso en línea con acceso inmediato
+          </p>
         </motion.div>
 
         {/* VSL Player — SIEMPRE el mismo div, sin swap a iframe */}
@@ -120,7 +129,7 @@ export default function Hero({ onUnlock, isUnlocked }) {
           >
             {/* Este div es donde YouTube IFrame API inyecta el iframe.
                 NUNCA lo reemplazamos por un iframe propio — eso causaba el
-                bug "removeChild" cuando isUnlocked cambiaba. */}
+                bug "removeChild" al re-renderizar. */}
             <div
               ref={playerContainerRef}
               className="absolute inset-0 w-full h-full"
@@ -153,7 +162,6 @@ export default function Hero({ onUnlock, isUnlocked }) {
           </motion.div>
         </motion.div>
 
-        {/* Botón "Ya vi el video" REMOVIDO — el desbloqueo solo ocurre cuando el video termina */}
       </div>
     </section>
   );

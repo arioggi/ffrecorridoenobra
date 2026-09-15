@@ -111,7 +111,7 @@ export default function ComoFunciona() {
 
         {/* CTA al final de sección */}
         <div className="w-full mt-10 md:mt-12">
-          <CTAButton />
+          <CTAButton from="como-funciona" />
         </div>
       </div>
     </section>

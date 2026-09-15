@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { useVideoProgress } from './hooks/useVideoProgress';
 import { initScrollTracking } from './lib/tracking';
 
 import Hero from './components/Hero';
-import BlockedContent from './components/BlockedContent';
 import CountdownBar from './components/CountdownBar';
 import FirstCTA from './components/FirstCTA';
 import AboutKatya from './components/AboutKatya';
@@ -13,7 +11,6 @@ import CasoEstudio from './components/CasoEstudio';
 import ComoFunciona from './components/ComoFunciona';
 import Testimonials from './components/Testimonials';
 import HotmartReviews from './components/HotmartReviews';
-import Guarantees from './components/Guarantees';
 import Pricing from './components/Pricing';
 import FuncionaParaTi from './components/FuncionaParaTi';
 import ResumenFinal from './components/ResumenFinal';
@@ -22,26 +19,48 @@ import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
 import LegalPage from './components/LegalPage';
+import PasoPago from './components/PasoPago';
 
 const LEGAL_PAGES = ['privacidad', 'terminos', 'cookies', 'contacto'];
 
+function getPath() {
+  return window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+}
+
 function getLegalPage() {
-  const path = window.location.pathname.replace(/^\//, '').replace(/\/$/, '');
+  const path = getPath();
   return LEGAL_PAGES.includes(path) ? path : null;
 }
 
+function isPagoPage() {
+  return getPath() === 'pago';
+}
+
 export default function App() {
-  const { isUnlocked, unlock } = useVideoProgress();
   const legalPage = getLegalPage();
+  const pagoPage = isPagoPage();
+  const isLanding = !legalPage && !pagoPage;
 
   useEffect(() => {
-    if (legalPage) return;
+    if (!isLanding) return;
     const cleanup = initScrollTracking();
     return cleanup;
-  }, [legalPage]);
+  }, [isLanding]);
 
   if (legalPage) {
     return <LegalPage page={legalPage} />;
+  }
+
+  if (pagoPage) {
+    return (
+      <>
+        <CountdownBar />
+        <main className="min-h-screen bg-[#0A0A0A] pt-28 md:pt-24">
+          <PasoPago />
+        </main>
+        <CookieBanner />
+      </>
+    );
   }
 
   return (
@@ -49,55 +68,49 @@ export default function App() {
       <CountdownBar />
       <main className="min-h-screen bg-[#0A0A0A] pt-28 md:pt-24">
         {/* 1. Hero + VSL */}
-        <Hero onUnlock={unlock} isUnlocked={isUnlocked} />
+        <Hero />
 
-        {/* 2–11: Bloqueadas hasta ver el video */}
-        <BlockedContent isUnlocked={isUnlocked}>
-          {/* 2. CTA post-desbloqueo */}
-          <FirstCTA />
+        {/* 2. CTA principal */}
+        <FirstCTA />
 
-          {/* 3. Sobre Katya */}
-          <AboutKatya />
+        {/* 3. Sobre Katya */}
+        <AboutKatya />
 
-          {/* 4. Contenido del programa */}
-          <QueHayDentro />
+        {/* 4. Contenido del programa */}
+        <QueHayDentro />
 
-          {/* 5. Bonos exclusivos */}
-          <Bonuses />
+        {/* 5. Bonos exclusivos */}
+        <Bonuses />
 
-          {/* 5. Caso de estudio real */}
-          <CasoEstudio />
+        {/* 6. Caso de estudio real */}
+        <CasoEstudio />
 
-          {/* 6. Cómo funciona la Fórmula Flipping */}
-          <ComoFunciona />
+        {/* 7. Cómo funciona la Fórmula Flipping */}
+        <ComoFunciona />
 
-          {/* 7. Testimonios principales (video + 3 tarjetas) */}
-          <Testimonials />
+        {/* 8. Testimonios principales (video + 3 tarjetas) */}
+        <Testimonials />
 
-          {/* 6. Reseñas verificadas de Hotmart */}
-          <HotmartReviews />
+        {/* 9. Reseñas verificadas */}
+        <HotmartReviews />
 
-          {/* 7. Sellos de garantía */}
-          <Guarantees />
+        {/* 10. Precio + Value Stack */}
+        <Pricing />
 
-          {/* 8. Precio + Value Stack */}
-          <Pricing />
+        {/* 11. ¿Funciona en mi ciudad? */}
+        <FuncionaParaTi />
 
-          {/* 9. ¿Funciona en mi ciudad? */}
-          <FuncionaParaTi />
+        {/* 12. Resumen ejecutivo + CTA ancho */}
+        <ResumenFinal />
 
-          {/* 10. Resumen ejecutivo + CTA ancho */}
-          <ResumenFinal />
+        {/* 13. FAQ */}
+        <FAQ />
 
-          {/* 10. FAQ */}
-          <FAQ />
+        {/* 14. CTA Final agresivo */}
+        <FinalCTA />
 
-          {/* 10. CTA Final agresivo */}
-          <FinalCTA />
-
-          {/* 11. Footer */}
-          <Footer />
-        </BlockedContent>
+        {/* 15. Footer */}
+        <Footer />
       </main>
 
       {/* Banner de cookies (siempre visible) */}

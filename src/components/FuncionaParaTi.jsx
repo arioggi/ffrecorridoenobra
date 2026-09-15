@@ -128,9 +128,9 @@ export default function FuncionaParaTi() {
         </motion.div>
 
         {/* CTA */}
-        <CTAButton />
+        <CTAButton from="funciona-para-ti" />
 
-        {/* Sublabels + sello garantía 7 días */}
+        {/* Sublabels + texto de garantía */}
         <div className="flex flex-col items-center gap-6 text-center">
           <div className="text-[#B8B8B8] text-sm md:text-base">
             <p>
@@ -138,18 +138,11 @@ export default function FuncionaParaTi() {
               <strong className="text-white">cualquier ciudad de México y LATAM</strong>
             </p>
             <p className="mt-1">
-              Disponibilidad:{' '}
-              <strong className="text-[#FF6B1A]">Inmediata</strong>
+              <strong className="text-[#FF6B1A]">
+                Curso en línea: acceso inmediato · Presencial: 13 y 14 de noviembre
+              </strong>
             </p>
           </div>
-
-          <img
-            src="/assets/sellos/7_dias.png"
-            alt="Garantía de 7 días"
-            className="w-48 h-48 md:w-64 md:h-64 object-contain"
-            style={{ filter: 'drop-shadow(0 0 50px rgba(255,107,26,0.5))' }}
-            onError={(e) => { e.target.style.display = 'none'; }}
-          />
 
           <p className="text-[#B8B8B8] text-sm md:text-base max-w-2xl italic">
             Está respaldado por nuestra{' '}

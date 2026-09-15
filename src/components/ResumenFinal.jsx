@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CONFIG } from '../config/constants';
+import { esPreventaActiva, formatoMXN, precioActual } from '../config/constants';
 import CTAButton from './CTAButton';
 
 const bonos = [
@@ -79,7 +79,8 @@ export default function ResumenFinal() {
             utilidades reales con bienes raíces.
           </p>
           <p className="text-white font-bold">
-            Este es el resumen de lo que obtienes por solo ${CONFIG.PRECIO_ACTUAL} USD:
+            Este es el resumen de lo que obtienes por solo {formatoMXN(precioActual())} MXN
+            {esPreventaActiva() ? ' en preventa' : ''}:
           </p>
         </motion.div>
 
@@ -152,7 +153,7 @@ export default function ResumenFinal() {
         </div>
 
         {/* CTA */}
-        <CTAButton className="mt-6" />
+        <CTAButton from="resumen-final" className="mt-6" />
 
         {/* Sublabels debajo del CTA */}
         <motion.div
@@ -167,8 +168,9 @@ export default function ResumenFinal() {
             <strong className="text-white">cualquier ciudad de México y LATAM</strong>
           </p>
           <p>
-            Disponibilidad:{' '}
-            <strong className="text-[#FF6B1A]">Inmediata</strong>
+            <strong className="text-[#FF6B1A]">
+              Curso en línea: acceso inmediato · Presencial: 13 y 14 de noviembre
+            </strong>
           </p>
         </motion.div>
       </div>

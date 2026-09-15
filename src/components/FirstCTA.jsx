@@ -1,9 +1,12 @@
 import { motion } from 'framer-motion';
+import { CONFIG, esPreventaActiva, formatoMXN } from '../config/constants';
 import CTAButton from './CTAButton';
 
 const fadeInUp = { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } };
 
 export default function FirstCTA() {
+  const preventa = esPreventaActiva();
+
   return (
     <section className="w-full py-20 md:py-32 px-4 md:px-8 flex flex-col items-center relative overflow-hidden bg-[#1A1A1A]">
       {/* Glow decoration */}
@@ -24,7 +27,9 @@ export default function FirstCTA() {
           >
             <span className="w-2 h-2 rounded-full bg-[#FF6B1A] animate-pulse" />
             <span className="font-bebas text-[#FF6B1A] tracking-widest text-lg md:text-2xl">
-              ¡PERFECTO! AHORA QUE YA SABES CÓMO FUNCIONA...
+              {preventa
+                ? `EDICIÓN LIMITADA · PREVENTA HASTA EL ${CONFIG.PREVENTA_FIN_TEXTO.toUpperCase()}`
+                : 'EDICIÓN LIMITADA · CUPO REDUCIDO'}
             </span>
           </motion.div>
         </motion.div>
@@ -45,33 +50,58 @@ export default function FirstCTA() {
           </h2>
         </motion.div>
 
-        {/* CTA */}
-        <CTAButton />
-
-        {/* Sellos de confianza — mismo tamaño y estructura que Guarantees */}
+        {/* Bloque INCLUYE + precio */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="w-full mt-12 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14"
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-2xl mx-auto rounded-2xl p-8"
+          style={{ background: '#242424', border: '1px solid rgba(255,107,26,0.3)' }}
         >
-          {[
-            { src: '/assets/sellos/7_dias.png', alt: 'Garantía 7 días' },
-            { src: '/assets/sellos/alumnos_satisfechos.png', alt: '+4,605 alumnos satisfechos' },
-            { src: '/assets/sellos/acceso_inmediato.png', alt: 'Acceso 100% inmediato' },
-          ].map((sello) => (
-            <div key={sello.alt} className="flex flex-col items-center gap-4">
-              <img
-                src={sello.src}
-                alt={sello.alt}
-                className="w-44 h-44 md:w-52 md:h-52 object-contain drop-shadow-2xl"
-                style={{ filter: 'drop-shadow(0 0 30px rgba(255,107,26,0.25))' }}
-                onError={(e) => { e.target.style.display = 'none'; }}
-              />
-            </div>
-          ))}
+          <p className="font-bebas text-[#FF6B1A] tracking-[0.25em] text-lg md:text-xl">
+            INCLUYE:
+          </p>
+
+          <p
+            className="font-bebas text-white leading-tight mt-2"
+            style={{ fontSize: 'clamp(1.6rem, 4vw, 2.6rem)' }}
+          >
+            CURSO PRESENCIAL +{' '}
+            <span className="whitespace-nowrap">CURSO EN LÍNEA +</span>{' '}
+            <span className="whitespace-nowrap">RECORRIDO EN OBRA</span>
+          </p>
+
+          <p className="text-[#B8B8B8] text-base md:text-lg mt-6">
+            EL PRECIO ES DE{' '}
+            {preventa ? (
+              <span className="line-through text-[#707070]">
+                {formatoMXN(CONFIG.PRECIO_NORMAL)} {CONFIG.MONEDA}
+              </span>
+            ) : (
+              <span className="text-white font-bold">
+                {formatoMXN(CONFIG.PRECIO_NORMAL)} {CONFIG.MONEDA}
+              </span>
+            )}
+          </p>
+
+          {preventa && (
+            <>
+              <p
+                className="font-bebas text-[#FF6B1A] leading-none mt-3"
+                style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)' }}
+              >
+                PREVENTA {formatoMXN(CONFIG.PRECIO_PREVENTA)} {CONFIG.MONEDA}
+              </p>
+              <p className="text-sm text-[#B8B8B8] mt-1">
+                hasta el {CONFIG.PREVENTA_FIN_TEXTO}
+              </p>
+            </>
+          )}
         </motion.div>
+
+        {/* CTA */}
+        <CTAButton from="first-cta" />
 
       </div>
     </section>

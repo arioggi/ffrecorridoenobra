@@ -1,4 +1,4 @@
-import { CONFIG } from '../config/constants';
+import { CONFIG, precioActual } from '../config/constants';
 
 /**
  * Envía eventos estándar tanto a Meta Pixel como a Google Analytics (gtag)
@@ -29,25 +29,55 @@ export const trackCustom = (eventName, params = {}) => {
 };
 
 /**
- * Registra de forma precisa la intención de compra cuando van hacia Hotmart
+ * Registra la intención de compra cuando entran al embudo de pago (/pago).
+ * Se dispara desde los botones de la landing para no romper la continuidad
+ * de datos del Pixel: InitiateCheckout sigue significando "entró al embudo".
  */
-export const trackCheckout = () => {
+export const trackCheckout = ({ from } = {}) => {
   const params = {
-    content_name: 'Fórmula Flipping',
-    content_category: 'Curso',
-    value: CONFIG.PRECIO_ACTUAL,
+    content_name: CONFIG.NOMBRE_PRODUCTO,
+    content_category: 'Curso presencial + online',
+    value: precioActual(),
     currency: CONFIG.MONEDA,
+    cta_position: from,
   };
-  
+
   if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
     window.fbq('track', 'InitiateCheckout', params);
   }
   if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
     window.gtag('event', 'begin_checkout', {
       currency: CONFIG.MONEDA,
-      value: CONFIG.PRECIO_ACTUAL,
+      value: precioActual(),
+      cta_position: from,
     });
   }
+};
+
+/**
+ * Registra la forma de pago elegida en el paso 2 del embudo.
+ * @param {'stripe'|'transferencia'} metodo
+ */
+export const trackPagoElegido = (metodo) => {
+  const params = {
+    content_name: CONFIG.NOMBRE_PRODUCTO,
+    value: precioActual(),
+    currency: CONFIG.MONEDA,
+    payment_method: metodo,
+  };
+
+  if (typeof window !== 'undefined' && typeof window.fbq !== 'undefined') {
+    window.fbq('track', 'AddPaymentInfo', params);
+  }
+  if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+    window.gtag('event', 'add_payment_info', {
+      currency: CONFIG.MONEDA,
+      value: precioActual(),
+      payment_type: metodo,
+    });
+  }
+
+  trackCustom('PagoElegido', { metodo });
 };
 
 /**

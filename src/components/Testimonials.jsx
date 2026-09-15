@@ -119,7 +119,7 @@ export default function Testimonials() {
 
         {/* CTA al final de sección */}
         <div className="w-full mt-10 md:mt-12">
-          <CTAButton />
+          <CTAButton from="testimonios" />
         </div>
       </div>
     </section>

@@ -123,7 +123,7 @@ export default function AboutKatya() {
 
         {/* CTA al final de sección */}
         <div className="w-full mt-10 md:mt-12 max-w-6xl mx-auto">
-          <CTAButton />
+          <CTAButton from="about" />
         </div>
       </div>
     </section>

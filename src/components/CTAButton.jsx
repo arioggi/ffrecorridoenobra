@@ -1,14 +1,20 @@
 import { motion, useReducedMotion } from 'framer-motion';
-import { CONFIG } from '../config/constants';
+import { CONFIG, esPreventaActiva, formatoMXN } from '../config/constants';
 import { trackCheckout } from '../lib/tracking';
 
 export default function CTAButton({
-  label = 'SÍ, QUIERO ACCESO INSTANTÁNEO A FÓRMULA FLIPPING',
+  label = 'SÍ, QUIERO MI LUGAR EN FÓRMULA FLIPPING + RECORRIDO EN OBRA',
   sublabel = null,
+  from = undefined,
   className = '',
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const finalSublabel = sublabel || `DAME ACCESO POR SOLO $${CONFIG.PRECIO_ACTUAL} USD`;
+  const preventa = esPreventaActiva();
+  const finalSublabel =
+    sublabel ||
+    (preventa
+      ? `PREVENTA: SOLO ${formatoMXN(CONFIG.PRECIO_PREVENTA)} ${CONFIG.MONEDA} · PRECIO NORMAL ${formatoMXN(CONFIG.PRECIO_NORMAL)} ${CONFIG.MONEDA}`
+      : `SOLO ${formatoMXN(CONFIG.PRECIO_NORMAL)} ${CONFIG.MONEDA} · PAGO ÚNICO`);
 
   return (
     <motion.div
@@ -19,10 +25,8 @@ export default function CTAButton({
       className={`w-full cta-button-wrapper ${className}`}
     >
       <motion.a
-        href={CONFIG.LINK_HOTMART}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={trackCheckout}
+        href={CONFIG.RUTA_PAGO}
+        onClick={() => trackCheckout({ from })}
         animate={shouldReduceMotion ? {} : {
           boxShadow: [
             '0 0 30px rgba(255,107,26,0.5)',
