@@ -59,7 +59,7 @@ El archivo `render.yaml` en la raíz ya tiene la configuración correcta para de
 | `public/assets/testimonios/oscar-cortes.jpg` | Foto Oscar Cortés (cuadrada, 400x400px) |
 | `public/assets/testimonios/ana-pau-siles.jpg` | Foto Ana Pau Siles (cuadrada, 400x400px) |
 | `public/assets/testimonios/mauricio-salazar.jpg` | Foto Mauricio Salazar (cuadrada, 400x400px) |
-| `public/assets/recorrido/recorrido-en-obra.png` | Póster del evento, se muestra en `/pago` (cuadrado, 1200x1200px mínimo) |
+| `public/assets/recorrido/recorrido-en-obra.jpg` | Póster del evento, se muestra en `/pago` (~1200px de ancho, JPEG < 400 KB) |
 | `public/assets/modulos/modulo-1.jpg` a `modulo-12.jpg` | Screenshots de cada módulo (16:9) |
 
 ### Links y configuración

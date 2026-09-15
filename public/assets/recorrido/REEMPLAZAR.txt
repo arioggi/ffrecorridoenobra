@@ -1,1 +1,10 @@
-recorrido-en-obra.png → póster del evento. Versión actual 600×600. Pedir 1200×1200 px mínimo, PNG o JPG optimizado (< 400 KB).
+recorrido-en-obra.jpg → póster del evento que se muestra en /pago.
+
+Versión actual: 1170x1062 px, JPEG calidad 85, 236 KB.
+El original era PNG de 2.0 MB; se convirtió a JPEG porque el canal alfa
+estaba 100% opaco (no había transparencia que preservar) y la página lo
+carga con loading="eager".
+
+Si lo reemplazas: cuadrado o casi, 1200 px de ancho mínimo, y mantenlo
+por debajo de 400 KB. Si el archivo nuevo es PNG, hay que actualizar la
+extensión en src/components/PasoPago.jsx.

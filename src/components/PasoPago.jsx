@@ -61,7 +61,7 @@ export default function PasoPago() {
             {/* Imagen — primero en móvil */}
             <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="flex justify-center">
               <img
-                src="/assets/recorrido/recorrido-en-obra.png"
+                src="/assets/recorrido/recorrido-en-obra.jpg"
                 alt="Fórmula Flipping – Recorrido en obra. Curso presencial 13 de noviembre, recorrido en obra 14 de noviembre, curso en línea con acceso inmediato"
                 className="w-full max-w-md mx-auto rounded-2xl"
                 style={{ filter: 'drop-shadow(0 0 60px rgba(255,107,26,0.25))' }}
