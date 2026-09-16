@@ -6,7 +6,7 @@ export const CONFIG = {
   LINK_LINKTREE: 'https://youtube.com/playlist?list=PLj_NAnLjcNYfNTAuG0MFMm1iXt0IcU1Db&si=UZxh63Bi-jLcerBo',
 
   // Videos YouTube
-  VSL_VIDEO_ID: 'RHlW14YeXtM',
+  VSL_VIDEO_ID: 'lL0kTnS0umo',
   TESTIMONIO_VIDEO_ID: '53cvJvlEHMU',
 
   // Producto
