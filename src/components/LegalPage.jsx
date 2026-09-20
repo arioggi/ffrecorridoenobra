@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 const CONTENT = {
   privacidad: {
     title: 'Política de Privacidad',
-    body: `Esta Política de Privacidad describe cómo Academia Orange ("nosotros") recopila, usa y comparte información sobre usted cuando visita formulaflipping.academiaorange.com.
+    body: `Esta Política de Privacidad describe cómo Academia Orange ("nosotros") recopila, usa y comparte información sobre usted cuando visita recorridoenobra.academiaorange.com.
 
 INFORMACIÓN QUE RECOPILAMOS
 Recopilamos información que usted nos proporciona directamente, como cuando realiza una compra, se registra o se comunica con nosotros. También recopilamos información de uso automaticamente, incluyendo información sobre su dispositivo, dirección IP, páginas visitadas y acciones en el sitio.
@@ -24,7 +24,7 @@ Podemos actualizar esta política periódicamente. Le notificaremos sobre cambio
   },
   terminos: {
     title: 'Términos y Condiciones',
-    body: `Al acceder y utilizar formulaflipping.academiaorange.com, usted acepta los siguientes términos y condiciones.
+    body: `Al acceder y utilizar recorridoenobra.academiaorange.com, usted acepta los siguientes términos y condiciones.
 
 ACCESO AL CURSO
 Al realizar una compra, usted obtiene una licencia personal, no transferible para acceder al curso Fórmula Flipping durante el período indicado (1 año desde la fecha de compra).
